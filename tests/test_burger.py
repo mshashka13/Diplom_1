@@ -49,38 +49,15 @@ class TestBurger:
         expected_price = (200 * 2) + 100 + 150
         assert burger.get_price() == expected_price
 
-    # Проверка корректного отображения названия булки в чеке
-    def test_burger_receipt_contains_bun(self, mock_bun, mock_sauce, mock_filling):
+
+    # Проверка корректного отображения названия булки, ингредиентов и общей суммы в чеке
+    def test_burger_receipt(self, mock_bun, mock_sauce, mock_filling):
         burger = Burger()
         burger.set_buns(mock_bun)
         burger.add_ingredient(mock_sauce)
         burger.add_ingredient(mock_filling)
         receipt = burger.get_receipt()
         assert "(==== булка ====)" in receipt
-
-    # Проверка корректного отображения названия соуса в чеке
-    def test_burger_receipt_contains_sauce(self, mock_bun, mock_sauce, mock_filling):
-        burger = Burger()
-        burger.set_buns(mock_bun)
-        burger.add_ingredient(mock_sauce)
-        burger.add_ingredient(mock_filling)
-        receipt = burger.get_receipt()
         assert "= sauce горячий соус =" in receipt
-
-    # Проверка корректного отображения названия начинки в чеке
-    def test_burger_receipt_contains_filling(self, mock_bun, mock_sauce, mock_filling):
-        burger = Burger()
-        burger.set_buns(mock_bun)
-        burger.add_ingredient(mock_sauce)
-        burger.add_ingredient(mock_filling)
-        receipt = burger.get_receipt()
         assert "= filling котлета =" in receipt
-
-    # Проверка корректного отображения общей суммы в чеке
-    def test_burger_receipt_contains_price(self, mock_bun, mock_sauce, mock_filling):
-        burger = Burger()
-        burger.set_buns(mock_bun)
-        burger.add_ingredient(mock_sauce)
-        burger.add_ingredient(mock_filling)
-        receipt = burger.get_receipt()
         assert "Price: 650" in receipt
